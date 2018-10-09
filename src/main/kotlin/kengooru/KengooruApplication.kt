@@ -10,10 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 import java.time.LocalDate
+import javax.persistence.CascadeType
+import javax.persistence.ElementCollection
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.OneToMany
 
 @SpringBootApplication
 class KengooruApplication
@@ -38,6 +42,7 @@ interface ItineraryRepository : JpaRepository<Itinerary, Int>
 class Itinerary(
         val title: String,
         val date: LocalDate,
+        @OneToMany(fetch = FetchType.EAGER /*, cascade = [CascadeType.ALL]*/)
         val points: List<Point>
 ) {
     @Id
@@ -45,11 +50,16 @@ class Itinerary(
     val id: Int? = null
 }
 
+@Entity
 class Point(
         val text: String,
         val lat: Double,
         val lon: Double
-)
+){
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Int? = null
+}
 
 @Configuration
 class Config {

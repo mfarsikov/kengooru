@@ -18,8 +18,6 @@ import java.util.*
 import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.FetchType
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.OneToMany
 
@@ -35,9 +33,14 @@ class ItineraryController(
         val itineraryRepository: ItineraryRepository
 ) {
     @PostMapping("/itineraries")
-    fun create(@RequestBody itinerary: Itinerary):ResponseEntity<Unit>{
+    fun create(@RequestBody itinerary: Itinerary): ResponseEntity<Unit> {
         itineraryRepository.save(itinerary)
         return ResponseEntity.created(URI("/itineraries/${itinerary.id}")).build()
+    }
+
+    @GetMapping("/itineraries")
+    fun readAll(): List<Itinerary> {
+        return itineraryRepository.findAll()
     }
 
     @GetMapping("/itineraries/{id}")
@@ -56,7 +59,8 @@ class Itinerary(
         @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
         val points: List<Point>
 ) {
-    @Id val id = UUID.randomUUID()
+    @Id
+    val id = UUID.randomUUID()
 }
 
 @Entity
@@ -65,7 +69,8 @@ class Point(
         val lat: Double,
         val lon: Double
 ) {
-    @Id val id = UUID.randomUUID()
+    @Id
+    val id = UUID.randomUUID()
 }
 
 @Configuration

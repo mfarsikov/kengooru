@@ -42,7 +42,7 @@ interface ItineraryRepository : JpaRepository<Itinerary, Int>
 class Itinerary(
         val title: String,
         val date: LocalDate,
-        @OneToMany(fetch = FetchType.EAGER /*, cascade = [CascadeType.ALL]*/)
+        @OneToMany(fetch = FetchType.EAGER , cascade = [CascadeType.ALL])
         val points: List<Point>
 ) {
     @Id

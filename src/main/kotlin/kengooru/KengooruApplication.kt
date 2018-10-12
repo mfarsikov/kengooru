@@ -31,10 +31,10 @@ class Init(
         ).associateBy { it.name }
 
         val users = listOf(
-                User(firstName = "John", lastName = "Doe", photoUrl = ""),
-                User(firstName = "Gina", lastName = "Doe", photoUrl = ""),
-                User(firstName = "Maya", lastName = "Doe", photoUrl = ""),
-                User(firstName = "Justin", lastName = "Doe", photoUrl = "")
+                Person(firstName = "John", lastName = "Doe", photoUrl = ""),
+                Person(firstName = "Gina", lastName = "Doe", photoUrl = ""),
+                Person(firstName = "Maya", lastName = "Doe", photoUrl = ""),
+                Person(firstName = "Justin", lastName = "Doe", photoUrl = "")
         ).associateBy { it.firstName }
 
         val itineraries = listOf(

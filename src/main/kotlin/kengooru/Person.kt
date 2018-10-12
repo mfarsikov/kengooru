@@ -6,7 +6,7 @@ import javax.persistence.Entity
 import javax.persistence.Id
 
 @Entity
-data class User(
+data class Person(
         val firstName: String,
         val lastName: String,
         val photoUrl: String
@@ -15,6 +15,6 @@ data class User(
     val id = UUID.randomUUID()
 }
 
-interface UserRepository : JpaRepository<User, UUID> {
-    fun findByIdIn(ids: List<UUID>): List<User>
+interface UserRepository : JpaRepository<Person, UUID> {
+    fun findByIdIn(ids: List<UUID>): List<Person>
 }

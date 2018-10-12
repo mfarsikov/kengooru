@@ -65,8 +65,8 @@ class ItineraryController(
     }
 
     @GetMapping("/itineraries/{id}")
-    fun getItinerary(@PathVariable id: UUID): Itinerary {
-        return itineraryRepository.getOne(id)
+    fun getItinerary(@PathVariable id: UUID): Itinerary? {
+        return itineraryRepository.findById(id).orElse(null)
     }
 
     @GetMapping("/cities")

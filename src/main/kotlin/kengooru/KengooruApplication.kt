@@ -24,10 +24,10 @@ class Init(
     override fun run(args: ApplicationArguments?) {
 
         val cities = listOf(
-                City("New York", ""),
-                City("Los Angeles", ""),
-                City("Miami", ""),
-                City("San Francisco", "")
+                City("New York", "https://sheltered-lake-24153.herokuapp.com/ny.jpg"),
+                City("Los Angeles", "https://sheltered-lake-24153.herokuapp.com/la.jpg"),
+                City("Miami", "https://sheltered-lake-24153.herokuapp.com/m.jpg"),
+                City("San Francisco", "https://sheltered-lake-24153.herokuapp.com/sf.jpg")
         ).associateBy { it.name }
 
         val users = listOf(
